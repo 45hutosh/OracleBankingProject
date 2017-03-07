@@ -1,6 +1,6 @@
-import java.io.FileInputStream;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -19,13 +19,23 @@ public class ReadFileServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//super.doPost(req, resp);
-		PrintWriter out=resp.getWriter();
-		out.print("Reading File");
 		
-	   /* FileInputStream fin=new FileInputStream("C:\\.txt");    
-	    int i=fin.read();  
-	    System.out.print((char)i);    
-	    fin.close();*/    
+		
+		String filepath = (String) req.getAttribute("filename");
+		//String filename = filepath.substring(filepath.lastIndexOf("\\")+1);
+		FileReader fr= new FileReader(filepath);
+	    BufferedReader br= new BufferedReader(fr);
+	    String line;
+	    while ((line = br.readLine()) != null) {
+	    	String[] delimitedString = line.split(",");
+	    	for(int i=0;i<delimitedString.length;i++){
+	    		
+	    	}
+	    }
+	    
+	    System.out.println("In ReadFile. Control in Servlet two.");
+	    br.close();
+	    fr.close();   
 	
 	}
 }
